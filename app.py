@@ -85,5 +85,11 @@ def ana():
     result = render_template("index.html", zomb=zomb, anag_arr=anag_arr, lett=lett, ttt=ttt, clear=clear)
     return result
 
+from flask import send_from_directory
+
+@app.route('/sw.js')
+def service_worker():
+    return send_from_directory('static', 'sw.js')
+
 if __name__ == '__main__':
     app.run()
