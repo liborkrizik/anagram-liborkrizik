@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>🔥💣Liborova Krížikova Anagramová Appka💣🔥</title>
+
+<link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<meta name="theme-color" content="#181a1b">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='icon-192.png') }}">
+
 <meta property="og:image" content="{{ url_for('static', filename='anagramapp.webp', _external=True) }}">
 <meta property="og:title" content="Anagram App by Libor Krížik">
 <meta property="og:description" content="Try clever anagram combinations instantly — now on liborkrizik.com and liborkrizik.eu domains.">
@@ -40,12 +48,13 @@
 <body>
 <font face="Arial,Helvetica" size="-1">
 
-    <div class="logo-container" style="margin-bottom: 20px;">
-        <!-- Logo Section -->
-        <a href="https://www.liborkrizik.com" target="_blank">
-            <img src="https://i.postimg.cc/QM8hMX5y/lklogo.png" alt="Libor Krizik Logo" style="max-width: 100%; height: auto; max-height: 200px;">
-        </a>
-    </div>
+<div class="logo-container" style="margin-bottom: 20px;">
+    <a href="https://www.liborkrizik.com" target="_blank">
+        <img src="{{ url_for('static', filename='images/lklogo.png') }}"
+             alt="Libor Krizik Logo"
+             style="max-width: 100%; height: auto; max-height: 200px;">
+    </a>
+</div>
 
     <h2>⭐️ Libor Krížik´s Iterative Anagram App ⭐️</h2>
     <i>Decode multi-word anagrams word by word</i>
@@ -214,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return callback();
         }
         const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/darkreader@4.9.58/darkreader.min.js";
+        script.src = "/static/js/darkreader.min.js";
         script.onload = callback;
         document.head.appendChild(script);
     }
@@ -257,6 +266,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
-
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(() => console.log("Service Worker Registered"));
+}
+</script>
 </body>
 </html>
